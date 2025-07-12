@@ -1,0 +1,8 @@
+*.env
+.env
+.env*
+
+/node_modules
+./dist
+
+# we also get .prettierignore file generator also
