@@ -37,4 +37,19 @@ const app = express();
 
 // more better apporuch is that make new file in DB, database folder, and write function over there then export it to index.js file
 
-connectDB();
+// connectDB function, tho ham nai DB ka asnychronius method likh which return promises on completion.
+connectDB()
+  .then(() => {
+    app.on("error", (error) => {
+      console.log("error", (error) => {
+        console.log("errr", error);
+        throw error;
+      });
+    });
+    app.listen(process.env.PORT || 8000, () => {
+      console.log(`Server is runing at port: ${process.env.PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.log("MongoDB connection failed!!!", err);
+  });
