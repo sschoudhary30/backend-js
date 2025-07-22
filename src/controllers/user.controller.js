@@ -38,11 +38,11 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new ApiError(400, "All fields are required!!");
   }
 
-  if (!email.include("@")) {
+  if (!email.includes("@")) {
     throw new ApiError(400, "Invalid email address format!!");
   }
 
-  const existUser = User.findOne({
+  const existUser = await User.findOne({
     // yaha pe ham single value bhi passkar shak thi hai like email
     $or: [{ username }, { email }],
   });
@@ -52,9 +52,22 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 
   const avatarLocalPath = req.files?.avatar[0]?.path;
-  console.log(avatarLocalPath);
+  //console.log(req.files);
+  //console.log(req.files?.avatar);
+  //console.log(avatarLocalPath);
 
-  const coverImageLocalPath = req.files?.coverImage[0]?.path;
+  //const coverImageLocalPath = req.files?.coverImage[0]?.path; // this okay but what is use send hi nahi kar tha data, then issue hai
+  // also coverImage mandate nahi hai
+
+  // here coverImage is handle properly with not mandate it
+  let coverImageLocalPath;
+  if (
+    req.files &&
+    Array.isArray(req.files.coverImage) &&
+    req.files.coverImage.length > 0
+  ) {
+    coverImageLocalPath = req.files.coverImage[0].path;
+  }
 
   if (!avatarLocalPath) {
     throw new ApiError(400, "Avatar file is required!!");
