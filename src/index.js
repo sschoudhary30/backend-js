@@ -7,6 +7,8 @@ import connectDB from "./db/index.js";
 
 import { app } from "./app.js";
 
+// don't create app again here, then it create new app there will no sync in app.js and index.js
+
 // function connectDB(){
 // }
 // connectDB()
@@ -21,12 +23,12 @@ import { app } from "./app.js";
 // (async () => {
 //   try {
 //     await mongoose.connect(`${process.env.MONGO_URI}/${DB_NAME}`);
-//     // after DB connection agar app interact nahi kar pa raha then ye app.on likha hai
+//     after DB connection agar app interact nahi kar pa raha then ye app.on likha hai
 //     app.on("error", (error) => {
 //       console.log("ERROR :", error);
 //       throw error;
 //     });
-//     // if app is listening then do this
+//      if app is listening then do this
 //     app.lister(process.env.PORT, () => {
 //       console.log(`App is listening on port ${process.env.PORT}`);
 //     });

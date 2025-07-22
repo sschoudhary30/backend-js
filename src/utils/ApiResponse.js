@@ -7,4 +7,6 @@ class ApiResponse {
   }
 }
 
+export { ApiResponse };
+
 // server ka status code hotha hai uska pata hona aacha hai.
