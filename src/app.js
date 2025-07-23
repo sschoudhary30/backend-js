@@ -39,6 +39,7 @@ import userRouter from "./routes/user.route.js";
 // routes declaration;
 // when we use router then use .use not .get
 // app.use("/users", userRouter); this normal way
+
 app.use("/api/v1/users", userRouter); // this production grade way
 // http://localhost:8000/user/register
 // http://localhost:8000/api/v1/user/register
