@@ -1,8 +1,10 @@
 import mongoose, { Schema } from "mongoose";
+import { asyncHandler } from "../utils/asyncHandler";
+import { ApiResponse } from "../utils/ApiResponse";
 
-const subcriptionSchema = new Schema(
+const subscriptionSchema = new Schema(
   {
-    subcriber: {
+    subscriber: {
       type: Schema.Types.ObjectId, // one who is subscribing
       ref: "User",
     },
@@ -14,4 +16,4 @@ const subcriptionSchema = new Schema(
   { timestamps: true }
 );
 
-export const Subcription = mongoose.model("Subcription", subcriptionSchema);
+export const Subscription = mongoose.model("Subscription", subscriptionSchema);
